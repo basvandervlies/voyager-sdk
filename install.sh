@@ -1609,7 +1609,14 @@ add_apt_repositories() {
     # TODO there may be issues if specified in locations where parent directory is not readable
     m1="mkdir -p \"$(dirname "$key")\""
     m2="chmod -R 0755 \"$(dirname "$key")\""
-    c1="sh -c 'curl -fsSL \"${url}\" | gpg --dearmor ${overwrite_gpg} -o \"${key}\"'"
+    case "$SYS_OS_name" in
+        Debian)
+            c1="sh -c 'curl -fsSL \"${url}\" --output \"${key}\"'"
+            ;;
+        *)
+            c1="sh -c 'curl -fsSL \"${url}\" | gpg --dearmor ${overwrite_gpg} -o \"${key}\"'"
+            ;;
+    esac
     c2="chmod a+r \"$key\""
     m3="mkdir -p \"$(dirname "$apt_list")\""
     e1="deb [arch=$SYS_arch signed-by=\"${key}\"]"
@@ -3208,7 +3215,9 @@ if $ARG_gen_requirements; then
   resolve_option "gen_requirements" "Generate requirements"
 fi
 
+## disable adding to group HvB
 AX_GROUPS="video render messagebus"
+AX_GROUPS=""
 
 if arg_docker; then
   update_repo_list "$AX_docker_repos" "$STR_docker"
