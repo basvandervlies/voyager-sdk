@@ -3249,7 +3249,7 @@ else
   exit 0
 fi
 
-check_authentication
+#check_authentication
 
 if is_set $VAR_groups; then
   added=false
