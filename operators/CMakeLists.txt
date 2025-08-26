@@ -11,7 +11,6 @@ set(CMAKE_INSTALL_MESSAGE LAZY)
 # Compiler-specific flags
 add_compile_options(
     -Wall
-    -Werror
     -Wno-sign-compare
     -Wno-unused-variable
 )

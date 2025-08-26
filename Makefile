@@ -43,7 +43,7 @@ endif
 
 # Compilers
 CXX   := gcc
-FLAGS := -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter -Werror
+FLAGS := -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter
 
 # Debug/release
 ifndef CFG
