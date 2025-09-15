@@ -3432,7 +3432,7 @@ fi
 # Add repositories
 if is_set "$VAR_system_repositories"; then
   apt_check_system
-  add_apt_repositories "VAR_system_repositories" "$STR_system"
+  #add_apt_repositories "VAR_system_repositories" "$STR_system"
   apt_update_system
 fi
 if is_set "$VAR_docker_repositories"; then

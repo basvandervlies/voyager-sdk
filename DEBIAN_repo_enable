@@ -1,0 +1,2 @@
+curl -fsSL "https://software.axelera.ai/artifactory/api/security/keypair/axelera/public" --output "/etc/apt/trusted.gpg.d/axelera.asc"
+echo "deb [arch=amd64 signed-by="/etc/apt/trusted.gpg.d/axelera.asc"] https://software.axelera.ai/artifactory/axelera-apt-source/ stable main" > "/etc/apt/sources.list.d/axelera.list"'
