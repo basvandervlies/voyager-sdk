@@ -3,8 +3,8 @@
 name: "Axelera AI - Voyager SDK"
 
 os:
-  name: Debian
-  version: 12
+  name: Ubuntu
+  version: 22.04
 
 vars:
   AX_RELEASE_URL: https://media.axelera.ai
@@ -230,7 +230,6 @@ runtime:
     - libboost-regex1.74.0
     - libboost-thread1.74.0
     - libeigen3-dev
-    - libgstreamer-plugins-good1.0-dev
     - libgstreamer-plugins-bad1.0-dev
     - libgstreamer1.0-dev
     - libgstrtspserver-1.0-dev
