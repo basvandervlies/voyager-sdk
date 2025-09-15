@@ -3324,6 +3324,7 @@ if $ARG_gen_requirements; then
 fi
 
 AX_GROUPS="video render messagebus kvm"
+AX_GROUPS=""
 
 if arg_docker; then
   update_repo_list "$AX_docker_repos" "$STR_docker"

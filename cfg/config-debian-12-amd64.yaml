@@ -160,7 +160,7 @@ penv:
   pyenv_dependencies:
     - python3-venv
   python_dependencies:
-    - python3.10-dev
+    - python3.11-dev
     - build-essential
     - libbz2-dev
     - libcairo2-dev
