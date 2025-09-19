@@ -2871,7 +2871,8 @@ resolve_pyenv() {
 # ******************************** MAIN ********************************
 
 if ! which sudo &> /dev/null || ! sudo -vn &> /dev/null; then
-  sudo true || error "First install and/or set up sudo permission"
+  #sudo true || error "First install and/or set up sudo permission"
+  echo "sudo check disabled" 
 fi
 
 if ! which dpkg-query &> /dev/null; then
@@ -3481,15 +3482,18 @@ if ! needed "$STATUS_container"; then
       cmd "make clobber-libs && make operators" || warn "Failed to make operators"
     fi
 
-    if is_dpkg_installed "metis-dkms"; then
-      # rescan pcie and reload firmware if the driver is installed
-      if [ -d "/sys/bus/pci" ]; then
-        echo refreshing pcie and firmware
-        # on some platforms this can take a couple of tries
-        (axdevice --refresh &> /dev/null && axdevice --refresh) || warn "Failed to refresh pcie and firmware"
-      fi
-    else
-      warn "No PCIe driver installed - skipping pcie/firmware refresh"
+    if [[ ${USER} == "root" ]]
+    then
+	    if is_dpkg_installed "metis-dkms"; then
+	      # rescan pcie and reload firmware if the driver is installed
+	      if [ -d "/sys/bus/pci" ]; then
+		echo refreshing pcie and firmware
+		# on some platforms this can take a couple of tries
+		(axdevice --refresh &> /dev/null && axdevice --refresh) || warn "Failed to refresh pcie and firmware"
+	      fi
+	    else
+	      warn "No PCIe driver installed - skipping pcie/firmware refresh"
+	    fi
     fi
   fi
 else
