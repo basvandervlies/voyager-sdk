@@ -3433,6 +3433,7 @@ fi
 # Add repositories
 if is_set "$VAR_system_repositories"; then
   apt_check_system
+  # HvB suspect that this function change directory perms /, /opt
   #add_apt_repositories "VAR_system_repositories" "$STR_system"
   apt_update_system
 fi
