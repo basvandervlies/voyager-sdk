@@ -2892,9 +2892,6 @@ resolve_pyenv() {
 
 # ******************************** MAIN ********************************
 
-if ! which sudo &> /dev/null || ! sudo -vn &> /dev/null; then
-  sudo true || error "First install and/or set up sudo permission"
-fi
 
 if ! which dpkg-query &> /dev/null; then
   # Needed to check all other installation requirements
@@ -3105,6 +3102,16 @@ if is_set "$1"; then
 fi
 
 exit_if_error
+
+
+## HvB root check
+if $ARG_runtime; then
+  echo "Skipping sudo check not needed for runtime installation"
+else
+  if ! which sudo &> /dev/null || ! sudo -vn &> /dev/null; then
+      sudo true || error "First install and/or set up sudo permission"
+  fi
+fi
 
 if $ARG_all; then
   set_arg_if_not_unset "development"
