@@ -3515,7 +3515,15 @@ if ! needed "$STATUS_container"; then
       if [ -d "/sys/bus/pci" ]; then
         echo refreshing pcie and firmware
         # on some platforms this can take a couple of tries
-        (axdevice --refresh &> /dev/null && axdevice --refresh) || warn "Failed to refresh pcie and firmware"
+        #
+        ## HvB
+        if [[ ${USER} == "root" ]]
+        then
+          (axdevice --refresh &> /dev/null && axdevice --refresh) || warn "Failed to refresh pcie and firmware"
+        else
+          echo Skipping refersh must be: root
+        fi
+
       fi
     else
       warn "No PCIe driver installed - skipping pcie/firmware refresh"
