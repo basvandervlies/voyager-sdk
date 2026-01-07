@@ -3334,7 +3334,9 @@ if $ARG_gen_requirements; then
   resolve_option "gen_requirements" "Generate requirements"
 fi
 
+### HvB this is not needed in our batch environment
 AX_GROUPS="video render messagebus kvm"
+AX_GROUPS=""
 
 if arg_docker; then
   update_repo_list "$AX_docker_repos" "$STR_docker"
@@ -3448,7 +3450,11 @@ fi
 # Add repositories
 if is_set "$VAR_system_repositories"; then
   apt_check_system
-  add_apt_repositories "VAR_system_repositories" "$STR_system"
+  ## HvB we install this with our configuration management software
+  if [[ ! -f /etc/apt/sources.list.d/axelera.list ]]
+  then
+      add_apt_repositories "VAR_system_repositories" "$STR_system"
+  fi
   apt_update_system
 fi
 if is_set "$VAR_docker_repositories"; then
