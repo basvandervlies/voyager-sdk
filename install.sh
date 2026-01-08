@@ -3105,8 +3105,8 @@ exit_if_error
 
 
 ## HvB root check
-if $ARG_runtime; then
-  echo "Skipping sudo check not needed for runtime installation"
+if $ARG_runtime || $ARG_media; then
+  echo "Skipping sudo check not needed for runtime|media installation"
 else
   if ! which sudo &> /dev/null || ! sudo -vn &> /dev/null; then
       sudo true || error "First install and/or set up sudo permission"
