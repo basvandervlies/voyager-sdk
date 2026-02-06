@@ -245,7 +245,7 @@ runtime:
     - unzip
     # platform specific
     - vainfo
-    - intel-media-va-driver-non-free
+    - intel-media-va-driver
     - gstreamer1.0-vaapi
     - intel-opencl-icd
 
